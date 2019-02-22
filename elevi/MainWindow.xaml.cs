@@ -52,6 +52,14 @@ namespace elevi
 
             var elev = new Elev();
             var iDNP = idnp.Text;
+            string characters = "abc\u0000def";
+            Console.WriteLine(characters.Length);
+            if (iDNP.Length != 13)
+            {
+                MessageBox.Show("Please insert a number with 13 digits", "Warning", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+                return;
+            }
+
             if (String.IsNullOrEmpty(iDNP))
             {
                 MessageBox.Show("Please insert your IDNP", "Warning", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
@@ -79,10 +87,17 @@ namespace elevi
                 return;
             }
 
+            
+            if (datanasterii.SelectedDate == null)
+            {
+                MessageBox.Show("Please insert a date", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var dataNasterii = datanasterii.SelectedDate.Value;
             if (dataNasterii > DateTime.Now)
             {
-                MessageBox.Show("Please insert a correct Birth Date", "Warning", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+                MessageBox.Show("Please insert a correct Birth Date", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
